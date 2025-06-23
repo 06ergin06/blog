@@ -33,18 +33,25 @@ watch(() => props.slug, (newSlug) => {
   }
 })
 </script>
+
 <template>
-  <div class="container mx-auto p-4">
-    <!-- Ana sayfaya geri dönme linki -->
-    <router-link to="/" class="text-blue-600 hover:underline mb-4 inline-block">&larr; Tüm Yazılara Geri Dön</router-link>
-    
-    <!-- Yazı Başlığı -->
-    <h1 class="text-4xl font-bold text-gray-800 mb-6">{{ postTitle }}</h1>
-    
-    <!-- Markdown içeriğinin render edileceği alan -->
-    <!-- 'prose' sınıfı Tailwind Typography eklentisinden gelir ve Markdown'ı güzelce stilize eder -->
-    <div class="prose lg:prose-xl max-w-none bg-white p-6 rounded-lg shadow-md">
-      <div v-html="postContent"></div>
+  <div class="min-h-screen bg-neutral-900 text-gray-300 p-8">
+    <div class="max-w-3xl mx-auto">
+      <!-- Ana sayfaya geri dönme linki -->
+      <router-link 
+        to="/" 
+        class="text-blue-400 hover:text-blue-300 mb-6 inline-block transition-colors duration-200"
+      >
+        ← Tüm Yazılara Geri Dön
+      </router-link>
+      
+      <!-- Yazı Başlığı -->
+      <h1 class="text-3xl font-bold text-white mb-8">{{ postTitle }}</h1>
+      
+      <!-- Markdown içeriği -->
+      <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 prose prose-invert max-w-none">
+        <div v-html="postContent"></div>
+      </div>
     </div>
   </div>
 </template>
