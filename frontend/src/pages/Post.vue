@@ -11,7 +11,13 @@ const props = defineProps({
 })
 const postContent = ref("")
 const postTitle = ref("Yükleniyor...")
-const md = new MarkdownIt()
+
+// MarkdownIt'i daha fazla özellikle yapılandır
+const md = new MarkdownIt({
+  html: true,
+  linkify: true,
+  typographer: true
+})
 
 const fetchPost = async(currentSlug) => {
     const response = await axios.get(`http://localhost:8000/posts/${currentSlug}`)
@@ -49,9 +55,10 @@ watch(() => props.slug, (newSlug) => {
       <h1 class="text-3xl font-bold text-white mb-8">{{ postTitle }}</h1>
       
       <!-- Markdown içeriği -->
-      <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 prose prose-invert max-w-none">
+      <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 markdown-body">
         <div v-html="postContent"></div>
       </div>
     </div>
   </div>
 </template>
+
