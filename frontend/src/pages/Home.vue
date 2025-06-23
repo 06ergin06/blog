@@ -9,6 +9,7 @@ onMounted(async() => {
     posts.value = response.data.posts
 })
 </script>
+
 <template>
     <div v-for="post in posts" :key="post">{{ post }}</div>
 </template>
