@@ -22,7 +22,6 @@ app.add_middleware(
 
 @app.get("/posts/")
 async def list_posts():
-
     all_files = os.listdir(post_dir)
     post_titles = []
     for filename in all_files:
@@ -30,3 +29,13 @@ async def list_posts():
             post_name = os.path.splitext(filename)[0]
             post_titles.append(post_name)
     return {"posts": post_titles}
+
+
+@app.get("/posts/{post_name}")
+async def read_post(post_name: str):
+    file_path = os.path.join(post_dir, f"{post_name}.md")
+    if not os.path.exists(file_path):
+        raise HTTPException(status_code=404, detail="Post not found.")
+    with open(file_path, "r") as p:
+        content = p.read()
+    return {"content": content}
