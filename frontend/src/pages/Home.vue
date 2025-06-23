@@ -12,6 +12,6 @@ onMounted(async() => {
 
 <template>
     <div v-for="post in posts" :key="post">
-        <router-link to="/posts/{{post}}">{{ post }}</router-link>
+        <router-link :to="{ name: 'post', params: { slug: post } }">{{ post }}</router-link>
     </div>
 </template>
