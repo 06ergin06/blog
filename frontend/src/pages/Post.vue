@@ -42,7 +42,7 @@ watch(() => props.slug, (newSlug) => {
 
 <template>
   <div class="min-h-screen bg-neutral-900 text-gray-300 p-8">
-    <div class="max-w-3xl mx-auto">
+    <div class="w-10/12 mx-auto">
       <!-- Ana sayfaya geri dönme linki -->
       <router-link 
         to="/" 
