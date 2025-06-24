@@ -1,11 +1,12 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import { API_BASE_URL } from "../config.js";
 
 const posts = ref([]);
 
 onMounted(async () => {
-  const response = await axios.get("http://localhost:8000/posts");
+  const response = await axios.get(`${API_BASE_URL}/posts`);
   posts.value = response.data.posts;
 });
 </script>

@@ -2,6 +2,7 @@
 import {ref,onMounted,watch} from "vue"
 import axios from "axios"
 import MarkdownIt from "markdown-it"
+import { API_BASE_URL } from "../config.js"
 
 const props = defineProps({
   slug: {
@@ -20,7 +21,7 @@ const md = new MarkdownIt({
 })
 
 const fetchPost = async(currentSlug) => {
-    const response = await axios.get(`http://localhost:8000/posts/${currentSlug}`)
+    const response = await axios.get(`${API_BASE_URL}/posts/${currentSlug}`)
     postContent.value = md.render(response.data.content)
     postTitle.value = formatPostName(currentSlug)
 }
